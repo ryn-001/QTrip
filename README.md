@@ -1,2 +1,2 @@
 # QTrip
-Static QTrip webstie made using HTML CSS and Bootstrap
+Travel booking website made using HTML CSS JS 
