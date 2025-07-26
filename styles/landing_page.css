@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.hero-image{
+    width: 100%;
+    height: 65vh;
+
+    background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('/images/hero.jpg');
+    background-position: center;
+    background-size: cover; 
+}
+
+.hero-image > p, .hero-image > h1{
+    padding: 0.6rem; 
+}
+
+.hero-image > input{
+    border: none;
+    outline: none;
+    padding: 1rem;
+    border-radius: 0.825rem;
+    width: 80%;
+    max-width: 500px;;
+}
+
