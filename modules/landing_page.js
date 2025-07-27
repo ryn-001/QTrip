@@ -1,5 +1,5 @@
 import config from "/config/config.js"
-const cards = document.getElementById('cards');
+const cities = document.getElementById('cities');
 
 async function fetchCities(){
     try{
@@ -51,7 +51,7 @@ function addCityToDOM(curr_city){
 
     col.appendChild(card);
 
-    let row = cards.firstElementChild;
+    let row = cities.firstElementChild;
     row.appendChild(col);
 }
 
