@@ -21,12 +21,15 @@ async function init(){
 init();
 
 function addCityToDOM(curr_city){
+    let col = document.createElement('div');
+    col.className = "col-12 col-sm-6 col-lg-3 g-4";
+
     let card = document.createElement('div');
     card.id = curr_city.id;
     card.className = "city-card";
 
     let anchor = document.createElement('a');
-    anchor.href = "pages/adventures/index.html"
+    anchor.href = "/pages/adventures/index.html"
     
     let image = document.createElement('img');
     image.src = curr_city.image;
@@ -42,9 +45,13 @@ function addCityToDOM(curr_city){
     let description = document.createElement('p');
     description.innerHTML = curr_city.description;
     content.append(heading,description);
+    content.className = "content";
 
     card.append(anchor,content);
 
-    cards.appendChild(card);
+    col.appendChild(card);
+
+    let row = cards.firstElementChild;
+    row.appendChild(col);
 }
 
