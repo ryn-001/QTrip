@@ -29,7 +29,7 @@ function addCityToDOM(curr_city){
     card.className = "city-card";
 
     let anchor = document.createElement('a');
-    anchor.href = "/pages/adventures/index.html"
+    anchor.href = `/pages/adventures/index.html?cities=${curr_city.id}`;
     
     let image = document.createElement('img');
     image.src = curr_city.image;
