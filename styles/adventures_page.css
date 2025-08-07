@@ -45,6 +45,18 @@
     width: 60%;
 }
 
+.duration-clear{
+    color: rgb(82, 82, 252);
+    cursor: pointer;
+    padding: 0.825rem;
+}
+
+.category-clear{
+    color: rgb(82, 82, 252);
+    cursor: pointer;
+    padding: 0.825rem;
+}
+
 @media screen and (max-width: 700px){
     .filters{
         flex-direction: column;
