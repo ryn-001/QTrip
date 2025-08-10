@@ -110,7 +110,7 @@ function addAdventureToDOM(adventures){
         card.setAttribute("id",data.id);
         
         const anchor = document.createElement("a");
-        anchor.href = "../details/index.html";
+        anchor.href = `../details/index.html?adventure=${data.id}`;
 
         const img = document.createElement("img");
         img.className = "card-img-top";
