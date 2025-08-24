@@ -1,5 +1,7 @@
 import config from "../config/config.js"
 
+let adventureDetails = [];
+
 function getAdventureFromURL(URL){
     const data = new URLSearchParams(URL);
     const id = data.get("adventure");
@@ -68,10 +70,68 @@ function addAdventureDetailsToDOM(adventure){
     adventureContent.innerHTML = adventure.content;
 }
 
+function calculateReservationCost(adventure,people){
+    const cost = adventure.costPerHead * Number(people);
+    
+    document.getElementById("reservation-cost-per-head").innerHTML = adventure.costPerHead;
+    document.getElementById("reservation-cost-total").innerHTML = "Rs. " + cost;
+    
+}
+
+
+function captureFormSubmit(){
+    const myForm = document.getElementById("myForm");
+    myForm.addEventListener("submit", async function (event){
+        event.preventDefault();
+
+        const name = myForm.elements['name'].value;
+        const date = myForm.elements['date'].value;
+        const person = myForm.elements['person'].value;
+
+        const obj = {
+            name: name,
+            date: date,
+            person: person,
+            adventure: adventureDetails.id
+        }
+
+        try{
+            const response = await fetch(`${config.backendpoint}/reservations/new`, {
+                method: "POST",
+                headers: {
+                    "content-type" : "application/json"
+                },
+                body: JSON.stringify(obj)
+            });
+
+            if(response.ok){
+                alert("Success");
+                location.reload();
+            }else{
+                alert("Failed");
+            }
+        }catch(e){
+            console.error(e);
+            alert("Failed");
+        }
+    });
+}
+
 async function init(){
     let adventureId = getAdventureFromURL(window.location.search);
-    let adventureDetails = await fetchAdventureDetails(adventureId);
+    adventureDetails = await fetchAdventureDetails(adventureId);
     console.log(adventureDetails);
     addAdventureDetailsToDOM(adventureDetails);
+
+    const peopleInput = document.querySelector('input[name="person"]');
+    let people = Number(peopleInput.value) || 1;
+    calculateReservationCost(adventureDetails,people);
+
+    peopleInput.addEventListener("input", (event) => {
+        people = Number(event.target.value) || 1;
+        calculateReservationCost(adventureDetails,people);
+    });
+    captureFormSubmit();
+    
 }
 init();

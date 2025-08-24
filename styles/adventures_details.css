@@ -39,3 +39,17 @@ footer{
         height: 30vh;
     }
 }
+
+#reserve-button{
+    width: 100%;
+    background-color: orange;
+    padding: 0.5rem;
+    border: 0;
+    outline: 0;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+#reserve-button:hover{
+    background-color: rgb(217, 142, 1);
+}
