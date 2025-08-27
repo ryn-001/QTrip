@@ -1,7 +1,5 @@
 import config from "../config/config.js"
 
-let adventureDetails = [];
-
 function getAdventureFromURL(URL){
     const data = new URLSearchParams(URL);
     const id = data.get("adventure");
@@ -75,11 +73,27 @@ function calculateReservationCost(adventure,people){
     
     document.getElementById("reservation-cost-per-head").innerHTML = adventure.costPerHead;
     document.getElementById("reservation-cost-total").innerHTML = "Rs. " + cost;
-    
 }
 
+function conditionalRendering(adventureDetails){
+    const soldOut = document.getElementById("reservation-sold-out");
+    const reservationAvailable = document.getElementById("reservation-available");
+    const cost = document.getElementById("reservation-cost-per-head");
+    const reservedBanner = document.getElementById("reserved-banner");
 
-function captureFormSubmit(){
+    if(adventureDetails.available){
+        soldOut.style.display = "none";
+        reservationAvailable.style.display = "block";
+        cost.innerHTML = adventureDetails.costPerHead;
+        reservedBanner.style.display = "none";
+    }else{
+        reservedBanner.style.display = "block";
+        soldOut.style.display = "block";
+        reservationAvailable.style.display = "none";
+    }
+}
+
+function captureFormSubmit(adventureDetails){
     const myForm = document.getElementById("myForm");
     myForm.addEventListener("submit", async function (event){
         event.preventDefault();
@@ -119,7 +133,7 @@ function captureFormSubmit(){
 
 async function init(){
     let adventureId = getAdventureFromURL(window.location.search);
-    adventureDetails = await fetchAdventureDetails(adventureId);
+    let adventureDetails = await fetchAdventureDetails(adventureId);
     console.log(adventureDetails);
     addAdventureDetailsToDOM(adventureDetails);
 
@@ -131,7 +145,7 @@ async function init(){
         people = Number(event.target.value) || 1;
         calculateReservationCost(adventureDetails,people);
     });
-    captureFormSubmit();
-    
+    captureFormSubmit(adventureDetails);
+    conditionalRendering(adventureDetails);
 }
 init();
