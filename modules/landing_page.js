@@ -1,4 +1,4 @@
-import config from "..config.js"
+import config from "../config/config.js"
 const cities = document.getElementById('cities');
 
 async function fetchCities(){
