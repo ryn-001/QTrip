@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .details{
     padding: 1rem;
 }
@@ -12,14 +18,12 @@
     padding: 1rem;
 }
 
-.adventure-details-card{
-
-}
 
 footer{
     width: 100%;
     text-align: center;
     padding: 1rem;
+    margin: auto;
 }
 
 .carousel{
@@ -32,6 +36,10 @@ footer{
     height: 55vh;
     object-fit: cover;
     object-position: center;
+}
+
+main{
+    flex: 1;
 }
 
 @media screen and (max-width: 576px) {
