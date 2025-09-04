@@ -1,10 +1,16 @@
 import config from "../config/config.js"
 const cities = document.getElementById('cities');
+const loading = document.getElementById('loading');
 
 async function fetchCities(){
     try{
+        loading.style.display = 'block';
+
         let response = await fetch(`${config.backendpoint}/cities`);
         let json = await response.json();
+
+        loading.style.display = 'none';
+
         return json;
     }catch{
         return null;
